@@ -1,53 +1,34 @@
 'use strict';
 
 
-const insultUrl="https://insult.mattbas.org/api/insult";
-
-
+const insultUrl="https://insult.mattbas.org/api/insult.json";
 
 
 //////////////// Watch User Form //////////////////////
-
 
 function watchUserForm() {
     $('form').submit(event => {
         event.preventDefault(); 
 
  
-// Tried to use Cors-anywhere code snippet but I don't think I am passing the correct information
-// Source: https://github.com/Rob--W/cors-anywhere
+   let herokuUrl = 'https://cors-anywhere.herokuapp.com/' + insultUrl;
 
-    /*   
-    jQuery.ajaxPrefilter(function(options) {
-            if (options.crossDomain && jQuery.support.cors) {
-                options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
-            }
-        });
-    */
-
-        fetch(insultUrl)
+        fetch(herokuUrl)
         .then(response => {
-        
-          if (response.ok) {
-          return response.json();
-          }
-          throw new Error(response.statusText);
+          // console.log(response)
+          return response.json()
         })
         
         .then((myJson => {
-          //renderResult(myJson);
-          console.log(myJson);
+          console.log(myJson.insult)
+          alert(myJson.insult);
         }))
         .catch(err => {
           $('#js-error-message').text(`Something went wrong: ${err.message}`);
             }
           ); 
         }) 
-
-
       };
-
-
 
     $(watchUserForm);
 
