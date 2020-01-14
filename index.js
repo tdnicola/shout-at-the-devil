@@ -3,7 +3,7 @@
 
 const insultUrl="https://insult.mattbas.org/api/insult.html";
 
-var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+
 
 
 
@@ -16,7 +16,7 @@ function watchUserForm() {
     $('form').submit(event => {
         event.preventDefault();        
  
-        fetch(proxyUrl + insultUrl)
+        fetch(insultUrl)
         
         
         /*.then(response => {
